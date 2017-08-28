@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a{
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div id="content"></div>
+</body>
+<script>
+    window.onload=function(){
+        page(1)
+    };
+    var total=20;
+    function page(pageindex){
+    var html='';
+    var num=pageindex-5;
+    var endnum=pageindex+5;
+        if(num<=1){
+            num=1;
+            endnum=total;
+            if(endnum>10){
+                endnum=10;
+            }
+        }
+        if(endnum>total){
+            endnum=total;
+        }
+        if(pageindex>1){
+            html+='<a href="#" onclick="page('+(pageindex-1)+')">'+'<上一页'+'<a/>&nbsp;';
+        }
+        for(var i=num;i<=endnum;i++){
+            if(i===pageindex){
+                html+='<span onclick="page('+i+')">'+i+'</span>&nbsp;';
+            }
+            else{
+                html+='<a href="#" onclick="page('+i+')">'+i+'<a/>&nbsp;';
+            }
+        }
+        if(pageindex<total){
+            html+='<a href="#" onclick="page('+(pageindex+1)+')">'+'下一页>'+'<a/>&nbsp;';
+            console.log(html);
+        }
+        document.getElementById("content").innerHTML=html;
+    }
+</script>
+</html>
